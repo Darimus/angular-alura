@@ -38,3 +38,6 @@ de build do projeto (até o momento, vamos fazer uma vista grossa para todas as 
 colocado todo o css.
 
 3- Vamos baixar o bootstrap via "npm install bootstrap@4.1.4 (utilizaremos este no curso);
+
+4- Devemos agora indicar para o Angular que queremos o bootstrap no build da aplicação e como fazemos isso? Vamos no arquivo "angular.json" e procuramos
+o styles e vamos passar o caminho para ele ("./node_modules/bootstrap/dist/css/bootstrap.min.css");
