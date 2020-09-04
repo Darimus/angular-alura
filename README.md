@@ -41,3 +41,11 @@ colocado todo o css.
 
 4- Devemos agora indicar para o Angular que queremos o bootstrap no build da aplicação e como fazemos isso? Vamos no arquivo "angular.json" e procuramos
 o styles e vamos passar o caminho para ele ("./node_modules/bootstrap/dist/css/bootstrap.min.css");
+
+Criando primeiro componente:
+
+1- Primeiramente vamos criar um new foolder dentro da pasta app (no nosso caso vai ser a pasta photo);
+
+2- Dentro deste novo foolder, vamos criar dois arquivos (photo.component.ts e photo.component.html);
+
+AULA 2 DO MODULO 2, NÃO VI TUDO!!!!!!!!
