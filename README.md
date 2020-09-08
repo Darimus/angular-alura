@@ -76,3 +76,14 @@ Logo depois vamos exportar a classe PhotoComponent, que também tera como parame
 
 5- Em app.module.ts devemos adicionar o PhotosModule dentro de imports e não em declarations (somente components aqui).
 
+## Fazendo um array e for para criar automaticamente as fotos na tela de acordo com numero de itens dentro do array
+
+1- Dentro de app.component.html excluimos o segundo <ap-photo> e deixamos somente o primeiro com as seguintes informações:
+<ap-photo  
+    *ngFor='let photo of photos' (Aqui criamos o for para sempre que existir um item dentro de photos, ele cria um novo photo)
+    [url]='photo.url' (Passamos a url de photos para o photo)
+    [description]='photo.description'> (mesma coisa)
+</ap-photo>
+Devemos fazer o data binding do url e description pois queremos o valor desta expressão;
+
+2- Dentro de app.component.ts e dentro da classe AppComponent criamos o array photos com os valores da url e description;

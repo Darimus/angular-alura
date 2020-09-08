@@ -1,5 +1,5 @@
-<ap-photo url='https://i.pinimg.com/originals/2c/26/e8/2c26e86579d25cb108b94d21ca27bcf1.jpg' 
-description='Liliana Vess'></ap-photo>
-
-<ap-photo url='https://daarken.com/shop/wp-content/uploads/2018/06/403868-Balduvian-Horde.jpg' 
-description='Viking Warriors'></ap-photo>
+<ap-photo  
+    *ngFor='let photo of photos'
+    [url]='photo.url' 
+    [description]='photo.description'>
+</ap-photo>
