@@ -87,3 +87,5 @@ Logo depois vamos exportar a classe PhotoComponent, que também tera como parame
 Devemos fazer o data binding do url e description pois queremos o valor desta expressão;
 
 2- Dentro de app.component.ts e dentro da classe AppComponent criamos o array photos com os valores da url e description;
+
+3- O beneficio é se trazermos a lista de fotos do back end, criaremos um novo elemento automaticamente.
