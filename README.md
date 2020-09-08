@@ -26,6 +26,9 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
+
+## ---------------------------------------------------------------------------------------------------------
+
 ## Anotações pessoais
 
 ## Vamos adicionar o bootstrap na single page aplication:
@@ -63,7 +66,7 @@ Logo depois vamos exportar a classe PhotoComponent, que também tera como parame
 
 ## Vamos seprar o module photos do app.module
 
-1- Vamos fazer a separação para precisarmos somente importar o photos.module no app.module, pois ao longo do curso iremos fazer varias melhorias no componente photo.
+1- Vamos fazer a separação para precisarmos somente importar o photos.module no app.module, pois ao longo do curso iremos fazer varias melhorias no componente photo, que dizem respeito a somente ao module photos, pois se não fizermos isto teremos muitos components e não saberemos o que é o que. Este module se chama (feature module)
 
 2- Começamos criando uma nova pasta em app chamda photos, e colocaremos a pasta photo dentro dela.
 
@@ -72,3 +75,4 @@ Logo depois vamos exportar a classe PhotoComponent, que também tera como parame
 4- Criamos um arquivo photos.module.ts dentro da pasta Photos, neste arquivos devemos passar o @Ng({ declarations, exports}) onde colocaremos os componentes de photo dentro do declarations (PhotoComponent) e exportamos para outros arquivos usarem o PhotosComponents, também precisamos criar a classe PhotosModule e exportar ela.
 
 5- Em app.module.ts devemos adicionar o PhotosModule dentro de imports e não em declarations (somente components aqui).
+
