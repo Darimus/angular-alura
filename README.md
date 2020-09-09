@@ -122,4 +122,24 @@ Devemos explicitar o tipo, ou seja tipar o http, pois o Angular não sabe identi
 
 12- Usamos o console.log para saber se a injeção está sendo feita de forma correta
 
-13- 
+## Consumindo dados da API
+
+1- Primeiro de tudo, dentro de constuctor precisamos fazer uma operação do tipo get (que pega os dados) do local desejado, no caso da nossa api (http://localhost:3000/flavio/photos), os dados que desejamos está neste caminho.
+
+2- Somente com o get não adianta de nada, precisamos inscrever alguém no observeble (que não precisa ser declarado), assim ele pega os dados de fato.
+
+3- Criamos uma arrow function que ira armazenar esses dados.
+    .subscribe(photos => this.photos = photos);
+
+Estamos criando o parametro photos e this.photos recebera os dados de photos (API)
+
+4- Porém precisamos tipar tudo, para o TS saber que tipo de dados sera consumido, por padrão vem do tipo any (qualquer um)
+
+5-  .get<Object[]>('http://localhost:3000/flavio/photos')
+    .subscribe(photos => this.photos = photos);
+
+Então falamos que os dados que vierem de localhost será um Object do tipo array
+
+6- Tipamos também o:   photos: Object[] = [];
+Para ele receber os dados do tipo array
+
