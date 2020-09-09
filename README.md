@@ -89,3 +89,37 @@ Devemos fazer o data binding do url e description pois queremos o valor desta ex
 2- Dentro de app.component.ts e dentro da classe AppComponent criamos o array photos com os valores da url e description;
 
 3- O beneficio é se trazermos a lista de fotos do back end, criaremos um novo elemento automaticamente.
+
+## Fazendo a integração com uma WEB API
+
+1- Baixar o arquivo da api;
+
+2- Abrir outro prompt, pois temos que rodar os dois servidores juntos
+
+3- Fazer somente uma vez o npm install, para instalar todas as dependencias da api
+
+4- npm start para subir o servidor
+
+5- Primeiramente precisamos apagar os dados das fotos no arquivo app.component.ts, pois os dados serão consumidos da web api.
+
+6- Agora precisamos nos comunicar com o Web API e essa comunicação será feita atravez do HttpClient (um serviço disponibilizado pelo proprio Angular), mas também poderia ser feito com Ajax, JQuery, entre outros.
+
+7- Em app.module.ts devemos fazer o import na mão: import { HttpClientModule } from '@angular/common/http'
+
+8- Agora devemos fazer o import do modulo HttpClientModule no @NgModule.
+
+9- Com tudo isso feito, o proprio vscode consegue fazer o auto complete de forma correta para o HttpClient no arquivo app.component.ts
+
+10- Agora precisamos fazer a injeção de dependencias. No Angular, precisamos incluir um constructor e usaremos o parametro que dependemos que no caso é o htpp.
+
+11- Constructor:
+
+    constructor(http: HttpClient){ 
+        console.log(http);
+    }
+
+Devemos explicitar o tipo, ou seja tipar o http, pois o Angular não sabe identificar se é um numero, string ou dado, http: HttpClient, estamos dizendo que o http é o tipo HttpClient.
+
+12- Usamos o console.log para saber se a injeção está sendo feita de forma correta
+
+13- 
