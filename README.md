@@ -164,3 +164,15 @@ Não podemos esquecer de importar o httpClient.
 E vamos usar o this.http dentro do listFromUser e tornar o http do metodo em string: 
         listFronUser(userName: string){
 E iremos retirar o subscribe do metodo, pois somente quer for consumir o serviço ira utilizalo.
+
+5- No arquivo app.component.ts vamos atulizar algumas informaçoes, primeiramente vamos atualizar o constructor: 
+
+  constructor(photoService: PhotoService){
+    
+    photoService
+    .listFronUser('flavio')
+    .subscribe(photos => this.photos = photos);
+  }
+Retiramos o import do httpClient e usamos agora o photoService.
+
+6- Dentro do arquivo photo.service.ts vamos resolver o problema de injeção usamondo o: @Injectable({providedIn: 'root'})

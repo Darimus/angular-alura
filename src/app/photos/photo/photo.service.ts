@@ -1,4 +1,8 @@
+import { Injectable } from "@angular/core";
+
 import { HttpClient } from "@angular/common/http";
+
+@Injectable({providedIn: 'root'})
 
 export class PhotoService{
 
@@ -6,8 +10,8 @@ export class PhotoService{
 
     listFronUser(userName: string){
 
-        this.http
+        return this.http
         .get<Object[]>('http://localhost:3000/flavio/photos')
-        .subscribe(photos => this.photos = photos);
+
     }
 }
