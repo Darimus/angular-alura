@@ -143,3 +143,19 @@ Então falamos que os dados que vierem de localhost será um Object do tipo arra
 6- Tipamos também o:   photos: Object[] = [];
 Para ele receber os dados do tipo array
 
+7- Problemas desta abordagem: Até o momento temos poucos componentes, porém se ao final do projeto existirem 30 componentes e desses 10 precisarem usar os dados desta API? O problema é que teremos que repetir este código 10 vezes, ou mesmo se o endereço não é mais este ou qualquer outro tipo de mudança. Vamos aprender a resolver.
+
+## Isolando a acesso em serviços
+
+1- Vamos isolar a classe de consumo de API, geralmente dentro do mundo de Angular, isto se chama serviço, ou seja, vamos isolar essa classe dentro de um serviço.
+
+2- Dentro da pasta photos/photo (onde existem os arquivos de componente), vamos criar um novo arquivo chamado photo.service.ts
+
+3- Primeiramente vamos criar a classe deste arquivo: export class PhotoService {
+    constructor (http: HttpClient){}
+
+    listFromUser(userName){}
+}
+Criamos a classe do serviço, ele dependera do http para realizar o consumo dos dados da API por isso criamos um constructor e vamos criar um listFromUser para lhe dar com o nome do usuario.
+Não podemos esquecer de importar o httpClient
+4- 
