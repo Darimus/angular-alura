@@ -2,7 +2,12 @@ import { HttpClient } from "@angular/common/http";
 
 export class PhotoService{
 
-    constructor (http: HttpClient){}
+    constructor (private http: HttpClient){}
 
-    listFronUser(userName){}
+    listFronUser(userName: string){
+
+        this.http
+        .get<Object[]>('http://localhost:3000/flavio/photos')
+        .subscribe(photos => this.photos = photos);
+    }
 }
