@@ -203,4 +203,29 @@ return this.http
 
     }
 
-Vamos dizer que é um array do tipo Photo.
+Vamos dizer que é um array do tipo Photo. Pois com a tipagem da interface agora os dados recebidos estão com o tipo correto e podemos utilizar o autocomplete e erramos menos.
+
+## Ciclo de vida de um componente
+
+Tudo dentro de app.component.ts
+
+1- Vamos padronizar nossa aplicação para deixar o constructor somente para injeção de dependencias e qualquer outra fase de lógica iremos colocar em outra fase do ciclo de vida.
+
+2- Vamos implementar o ngOnInit, vamos alterar a linha do export class:
+
+export class AppComponent implements OnInit
+
+Assim iremos evitar de escrever ngOnInit de forma errada, o proprio visual studio ira avisar do erro.
+
+3- Será criado o ngOnInit e moveremos o bloco dentro do constructor para ele. 
+
+    ngOnInit(): void {
+        
+        this.photoService
+        .listFronUser('flavio')
+        .subscribe(photos => this.photos = photos);
+    }
+
+4- Uma pequena organização: Quem depende de httpClientModule? o app.module ou o photos.module?
+
+5- 
