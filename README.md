@@ -175,4 +175,32 @@ E iremos retirar o subscribe do metodo, pois somente quer for consumir o serviç
   }
 Retiramos o import do httpClient e usamos agora o photoService.
 
-6- Dentro do arquivo photo.service.ts vamos resolver o problema de injeção usamondo o: @Injectable({providedIn: 'root'})
+6- Dentro do arquivo photo.service.ts vamos resolver o problema de injeção usando o: @Injectable({providedIn: 'root'})
+
+## Tipando nossa API
+
+1- Vamos tipar nosso service para sermos menos sucetives a erros e mantermos o autocomplete caso queremos acessar algum valor da photo, como: userId, description, likes etc.
+
+2- Primeiramente vamos criar um arquivo dentro de photo: photo.ts
+
+3- Vamos criar uma interface e não uma classe, pois queremos moldar, dar a forma aos dados.
+
+ export interface Photo {
+    id:number;
+    postDate:Date;
+    url:string;
+    description:string;
+    allowComments:boolean;
+    likes:number;
+    comments:number;
+    userId:number;
+}
+
+4- Vamos alterar o photo.service.ts:
+
+return this.http
+            .get<Photo[]>(API + '/flavio/photos')
+
+    }
+
+Vamos dizer que é um array do tipo Photo.
