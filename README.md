@@ -156,7 +156,7 @@ Para ele receber os dados do tipo array
 
     listFromUser(userName){}
 }
-Criamos a classe do serviço, ele dependera do http para realizar o consumo dos dados da API por isso criamos um constructor e vamos criar um listFromUser para lhe dar com o nome do usuario.
+Criamos a classe do serviço, ele dependera do http para realizar o consumo dos dados da API por isso criamos um constructor e vamos criar metodo listFromUser que recebera como parametro o nome do usuario.
 Não podemos esquecer de importar o httpClient.
 
 4- Vamos usar o get e subscribe que estava no app.component dentro do listFromUser, porém o http do list não consegue pegar o http do constructor, por isso vamos usar um metodo do TS e tornar o http privado(Assim tudo dentro deste arquivo pode acessar este construtor):

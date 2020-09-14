@@ -11,7 +11,7 @@ export class PhotoService{
     listFronUser(userName: string){
 
         return this.http
-        .get<Object[]>('http://localhost:3000/flavio/photos')
+            .get<Object[]>('http://localhost:3000/flavio/photos')
 
     }
 }
