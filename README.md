@@ -265,4 +265,10 @@ Todo componente gerado de forma automatica fica dentro de app, por isso mudando 
     .subscribe(photos => this.photos = photos);
   }
 
-E colocaremos dentro de photo-list.component, fazemos os imports
+E colocaremos dentro de photo-list.component, fazemos os imports.
+
+5- Salvaremos as alterações. AppComponent não está utilizando nada de photos.module.ts, e se observarmos este arquivo, PhotoComponent está em exports. Isto porque app.module.ts importa PhotosModule e, para que ele tenha acesso ao PhotoComponent, ele teve que ser exportado em photos.module.ts.
+
+Mas se tudo que diz respeito a imagens está dentro de "photos" e de photos.module.ts, não é necessário exportarmos tal componente, já que ninguém externo a este módulo irá utilizá-lo. Se isso acontecer, daí o exportaremos, sob demanda. O importante é entendermos que em declarations há PhotoComponent e PhotoListComponent. Por fazerem parte do array de declarations, um enxerga o outro, e isso é o suficiente.
+
+6- Agora precisamos lidar com um problema, queremos que hora exiba um componente e hora outro e como fazemos isso? Vamos ver isso ainda.
