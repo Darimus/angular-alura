@@ -228,4 +228,41 @@ Assim iremos evitar de escrever ngOnInit de forma errada, o proprio visual studi
 
 4- Uma pequena organização: Quem depende de httpClientModule? o app.module ou o photos.module?
 
-5- 
+5- Vamos organizar somente dois arquivos, são eles app.module.ts e photos.module.ts
+
+6- Em app.module.ts vamos retirar o import do photo.module
+
+7- Em photos.module.ts vamos importar no @NgModule o HttpClientModule:
+
+@NgModule({
+    declarations: [ PhotoComponent ],
+    exports: [ PhotoComponent ],
+    imports: [ HttpClientModule ]
+})
+
+## Organizando mais o código
+
+1- Atualmente o componente responsavel pela exibição das fotos é o app.componente.ts, tanto isso é verdade que ele é o primeiro a ser carregada na nossa aplicação. Porém ao pensar qual módulo que guarda tudo responsavel pelas fotos é o photo.module e porque não criar dentro deste módulo um componente responsavel somente por isso?
+
+2- Vamos criar uma pasta photo-list que ira conter todos os arquivos para tal tarefa, porém usaremos o Angular CLI para isso e assim agilizando o processo:
+
+    ng generate component photos/photo-list
+
+Todo componente gerado de forma automatica fica dentro de app, por isso mudando a rota.
+
+3- Agora vamos começar a mudar um poucos as coisas de local.
+
+4- Em app.component.ts vamos mover todo conteudo dentro de AppComponent (e não esquecendo de retirar o onInit e import e coisas que não ter mais necessidade):
+    
+  photos: any[] = [];
+
+  constructor(private photoService: PhotoService){ }
+  
+  ngOnInit(): void {
+    
+    this.photoService
+    .listFronUser('flavio')
+    .subscribe(photos => this.photos = photos);
+  }
+
+E colocaremos dentro de photo-list.component, fazemos os imports
