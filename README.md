@@ -278,3 +278,5 @@ Mas se tudo que diz respeito a imagens está dentro de "photos" e de photos.modu
 8- Por quais motivos criamos um componente próprio de listagem de imagens?
     Para separar melhor a responsabilidade (e assim facilidade de manutenção)
     Melhor testabilidade
+
+## Modulo 4 aula 5
