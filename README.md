@@ -272,3 +272,9 @@ E colocaremos dentro de photo-list.component, fazemos os imports.
 Mas se tudo que diz respeito a imagens está dentro de "photos" e de photos.module.ts, não é necessário exportarmos tal componente, já que ninguém externo a este módulo irá utilizá-lo. Se isso acontecer, daí o exportaremos, sob demanda. O importante é entendermos que em declarations há PhotoComponent e PhotoListComponent. Por fazerem parte do array de declarations, um enxerga o outro, e isso é o suficiente.
 
 6- Agora precisamos lidar com um problema, queremos que hora exiba um componente e hora outro e como fazemos isso? Vamos ver isso ainda.
+
+7- Vamos recortar o código do app.component.html e colar no photo-list.component.html.
+
+8- Por quais motivos criamos um componente próprio de listagem de imagens?
+    Para separar melhor a responsabilidade (e assim facilidade de manutenção)
+    Melhor testabilidade
