@@ -5,7 +5,6 @@ import { PhotoListComponent } from './photo-list/photo-list.component';
 
 @NgModule({
     declarations: [ PhotoComponent, PhotoListComponent ],
-    exports: [ PhotoComponent ],
     imports: [ HttpClientModule ]
 })
 
