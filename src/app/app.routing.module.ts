@@ -6,7 +6,7 @@ import { PhotoFormComponent } from './photos/photo-form/photo-form.component';
 import { PhotoListComponent } from './photos/photo-list/photo-list.component';
 
 const routes: Routes = [
-    { path: 'user/flavio', component: PhotoListComponent},
+    { path: 'user/:userName', component: PhotoListComponent},
     { path: 'p/add', component:  PhotoFormComponent},
     { path: '**', component: NotFoundComponent }
 ];

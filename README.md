@@ -370,7 +370,35 @@ Usamos a classe do bootstrap, nada fora do normal aqui, sem novidades.
         { path: '**', component: NotFoundComponent }
     ];
 
-6- Também temos que importar o module ErrorsModule no app.module.ts
+6- Também temos que importar o module ErrorsModule no app.module.ts no Ng imports
 
+## Segmentos de rotas
 
- 
+1- Para termos um path com user dinamico, temos de alterar alguns arquivos
+
+2- Vamos começar pelo photo-list.component.ts, vamos criar um novo parametro no constructor:
+
+        private activatedRoute: ActivatedRoute
+
+3- Agora vamos criar uma variavel para aceitar dinamicamente o nome do usuario: 
+
+    const userName = this.activatedRoute.snapshot.params.userName;
+
+e alteramos algumas coisas dentro do proprio ngOnInit:
+
+    ngOnInit(): void {
+        
+        const userName = this.activatedRoute.snapshot.params.userName;
+        
+        this.photoService
+        .listFronUser(userName)
+        .subscribe(photos => this.photos = photos);
+    }
+
+4- Vamos mudar o returno dentro do photo.service.ts:
+
+     listFronUser(userName: string){
+
+        return this.http
+            .get<Photo[]>(API + '/' + userName + '/photos')
+
