@@ -336,4 +336,41 @@ Com está tag o Angular vai saber que ao carregar aquela rota, deve se exibir de
 
 13- O AppRoutingModule (dentro do arquivo app.module.ts) não consegue carregar as diretivas de rotas do app.routing.module, então devemos exportar está diretiva.
 
+## Lidando com rotas inexistentes
+
+1- Ao acessar uma rota inexistente nada é exibido, porém no console da alguns erros.
+
+2- Vamos criar um novo module dentro da pasta app com o Angular CLI:
+
+    ng generate module errors
+
+Lembrando que o caminho padrão de gerar arquivos é dentro da pasta app, por isso não adicionamos ela.
+
+3- Agora dentro da pasta errors vamos criar o componente not-found:
+
+    ng generate component errors/not-found
+
+4- Dentro do arquivo not-found.component.html, vamos usar apenas uma mensagem de erro:
+
+<div class="text-center">
+    <h2>This page is not avaliable</h2>
+    <p>
+        The link you have acccessed may be broken or
+        the page may have ben removed.
+    </p>
+</div>
+
+Usamos a classe do bootstrap, nada fora do normal aqui, sem novidades.
+
+5- Não devemos esquecer de adicionar o path deste novo componente no app.routing.module.ts:
+
+    const routes: Routes = [
+        { path: 'user/flavio', component: PhotoListComponent},
+        { path: 'p/add', component:  PhotoFormComponent},
+        { path: '**', component: NotFoundComponent }
+    ];
+
+6- Também temos que importar o module ErrorsModule no app.module.ts
+
+
  
