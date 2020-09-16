@@ -318,4 +318,22 @@ Ele já faz o import sozinho do NgModule.
 
     const routes: Routes
 
-10- 
+10- Vamos importar o RouterModule para levar em consideração a lista de rotas do array:
+
+    @NgModule ({
+    imports: [ RouterModule.forRoot(routes) ]
+})
+
+11- Vamos importar o AppRoutingModule no arquivo app.module.ts
+
+DICA: As vezes o Angular CLI fica meio doido quando importamos um arquivo de rota, então vamos parar e subir novamente a aplicação!!
+
+12- Qual o primeiro componente carregado pela aplicação? O app.componente.html e neste arquivo devemos criar uma lacuna para ao acessar outras rotas e exiba dentro de app.component.html o componente da rota:
+
+    <router-outlet></router-outlet>
+
+Com está tag o Angular vai saber que ao carregar aquela rota, deve se exibir dentro desta tag.
+
+13- O AppRoutingModule (dentro do arquivo app.module.ts) não consegue carregar as diretivas de rotas do app.routing.module, então devemos exportar está diretiva.
+
+ 

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { PhotoFormComponent } from './photos/photo-form/photo-form.component';
 import { PhotoListComponent } from './photos/photo-list/photo-list.component';
@@ -10,7 +10,8 @@ const routes: Routes = [
 ];
 
 @NgModule ({
-
+    imports: [ RouterModule.forRoot(routes) ],
+    exports: [ RouterModule ]
 })
 
 export class AppRoutingModule {  }
