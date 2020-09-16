@@ -291,4 +291,31 @@ Mas se tudo que diz respeito a imagens está dentro de "photos" e de photos.modu
 
     export class AppRoutingModule {}
 
-5- 
+5- Criamos também o NgModule: 
+
+    @NgModule ({
+
+})
+
+Ele já faz o import sozinho do NgModule.
+
+6- Vamos criar uma constante com o nome de routes que vai ser um array JS:
+
+    conts routes = [];
+
+7- Daremos os dados do array, que irão ser o path e componente a ser carregado ao acessar este path:
+
+    const routes = [
+    { path: 'user/flavio', component: PhotoListComponent},
+    { path: 'p/add', component:  PhotoFormComponent}
+];
+
+8- Vamos também importar o Routes do Angular CLI:
+
+    import {Routes} from '@angular/router';
+
+9- E vamos dizer que o routes é do tipo Routes, para assim evitar erros de sintaxe:
+
+    const routes: Routes
+
+10- 
