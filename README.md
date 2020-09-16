@@ -279,4 +279,16 @@ Mas se tudo que diz respeito a imagens está dentro de "photos" e de photos.modu
     Para separar melhor a responsabilidade (e assim facilidade de manutenção)
     Melhor testabilidade
 
-## Modulo 4 aula 5
+## Roteamento de uma single page aplication
+
+1- Criamos mais um componente chamado photo-form com o comando ng create component photo/photo-form, ele já faz os imports e tudo certinho para a gente.
+
+2- Não podemos esquecer de importar o CommonModule no photos.module.ts
+
+3- Dentro da pasta app vamos criar o arquivo app.routing.module.ts
+
+4- Este arquivo criado vamos exportas sua classe:
+
+    export class AppRoutingModule {}
+
+5- 
