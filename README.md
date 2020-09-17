@@ -407,7 +407,6 @@ e alteramos algumas coisas dentro do proprio ngOnInit:
 1- Vamos melhorar a exibição e disposição das fotos com o grid do bootstrap
 
 2- Abrimos o arquivo photo-list.component.hmtl:
-
     <ol class='list-unstyled row'> (Vai ser nossa linha)
         <li *ngFor='let photo of photos' class='col-4'> (sistema de colunas, e passamos o ngFor para cada, pois queremos que cada vez ele gere uma li ao ser passado)
             <ap-photo 
@@ -418,3 +417,26 @@ e alteramos algumas coisas dentro do proprio ngOnInit:
     </ol>
 
 3- Porém iremos criar um novo componente que será responsavel por renderizar a nossa lista, afim de evitar problemas com o layout, pois no momento não está pulando uma linha.
+
+## Componente exclusivo para listar fotos 
+
+1- Vamos criar um componente chamado photo-grid para está função e como ele está fortemente atrelado ao photo-list e somente é usado por ele, vamos cria-lo dentro de photo-list.
+
+2- Agora dentro de photo-grid vamos pegar o photos-grid.component.html e adicionar o seguinte:
+    <ol class='list-unstyled row'>
+        <li *ngFor='let photo of photos' class='col-4'>
+            <ap-photo 
+                [url]='photo.url' 
+                [description]='photo.description'>
+            </ap-photo>
+        </li>
+    </ol>
+
+
+3- Abrindo o photos-grid.component.ts vamos incluir um Input: 
+
+      @Input() photos: Photo[] = [];
+
+E mudarmos o selector: para 'ap-photos-grid' pois ele prefixa app-photos-grid por conta do nome da pasta app, nossa aplicação é alura pic, então mudaremos para ap-photos-grid. Mudamos também dentro do photo-form, not-found também.
+
+4- 
