@@ -402,3 +402,19 @@ e alteramos algumas coisas dentro do proprio ngOnInit:
         return this.http
             .get<Photo[]>(API + '/' + userName + '/photos')
 
+## Melhorando a apresentação da lista
+
+1- Vamos melhorar a exibição e disposição das fotos com o grid do bootstrap
+
+2- Abrimos o arquivo photo-list.component.hmtl:
+
+    <ol class='list-unstyled row'> (Vai ser nossa linha)
+        <li *ngFor='let photo of photos' class='col-4'> (sistema de colunas, e passamos o ngFor para cada, pois queremos que cada vez ele gere uma li ao ser passado)
+            <ap-photo 
+                [url]='photo.url' 
+                [description]='photo.description'>
+            </ap-photo>
+        </li>
+    </ol>
+
+3- Porém iremos criar um novo componente que será responsavel por renderizar a nossa lista, afim de evitar problemas com o layout, pois no momento não está pulando uma linha.
