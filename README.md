@@ -458,12 +458,37 @@ Vamos dizer que é um array do tipo Photo
 Sabemos também que se não tiparmos este array ele será do tipo any.
 
 3- Precisamos entender que nosso array vai receber outro array (que será nossas linhas), e dentro deste arrays podera ter no máximo 3 itens:
-
+Exemplo da explicação
     [
-        [1,2,3],
-        [1,2,3],
-        [1,2,3],
+        [1,2,3], (primeiro row)
+        [1,2,3], (segundo row)
+        [1,2,3], (terceiro...)
         [1,2],
     ]
 
 Podendo também ter dois ou mesmo 1 elemento deste array, sem problema algum.
+
+4- Agora em photos-grid.component.html vamos mudar algumas coisas, a primeira é tirar o row da <ol> e colocar na <li>, tirando assim o col-4 da li.
+
+5- Falta implementarmos a lógica para a construção da lista rows de photos-grid.component.ts. Em ngOnInit() indicaremos que this.rows receberá o resultado de this.groupColumns(), um método a ser criado e que recebe a lista de photos. Criaremos um array chamado newRows que começa vazio, e sabemos que teremos que retorná-lo em algum momento.
+
+Faremos uma iteração de 3 em 3, então utilizaremos um for:
+
+    ngOnInit() {
+        this.rows = this.groupColumns(this.photos);
+    }
+
+    groupColumns(photos: Photo[]) {
+        const newRows = [];
+
+        for(let index = 0; index < photos.length; index+=3) {
+            newRows.push(photos.slice(index, index + 3));
+        }
+        return newRows;
+    }
+
+6- Isso é um exemplo clássico — quando se quer resolver um problema, o One framework não ajuda em nada, sendo necessário aplicar uma lógica de JavaScript e, claro, conhecer esta linguagem.
+
+O slice() sempre recebe a posição inicial que queremos considerar, e a final não inclusiva, "fatiando" o array. Ou seja, quando o primeiro index é 0, o outro vale 3, e o slice() pegará a fatia de 0 a 2. Esta segunda posição não é inclusiva, e se tivéssemos colocado a posição final como 2, seriam pegos 0 e 1, por isto utilizamos index + 3. Na passada seguinte, o primeiro index será 3, e o final, 6, sendo pegos 3, 4 e 5.
+
+Não há problema se no final sobrarem dois ou apenas um elemento, pois o slice() só trará a quantidade existente. Vamos testar? No navegador, nada é exibido, e no console não há nenhuma mensagem de erro. Ao começarem a criar componentes no Angular, muitas pessoas passam por esta dificuldade, e trataremos dela a seguir.
