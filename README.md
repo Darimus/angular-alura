@@ -445,5 +445,5 @@ Vamos dizer que é um array do tipo Photo
 
 5- O data bind do photo-list.component.html é o array de photo do arquivo photo-list.component.ts
 
-6-
+6- Em suma, retiramos a responsabilidade de apresentação do componente de photo-list para photos
 
