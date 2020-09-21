@@ -439,4 +439,11 @@ e alteramos algumas coisas dentro do proprio ngOnInit:
 
 E mudarmos o selector: para 'ap-photos-grid' pois ele prefixa app-photos-grid por conta do nome da pasta app, nossa aplicação é alura pic, então mudaremos para ap-photos-grid. Mudamos também dentro do photo-form, not-found também.
 
-4- 
+4- Dentro de photo-list-component.ts, vamos mudar o tipo de photos []: 
+      photos: Photo[] = [];
+Vamos dizer que é um array do tipo Photo
+
+5- O data bind do photo-list.component.html é o array de photo do arquivo photo-list.component.ts
+
+6-
+
