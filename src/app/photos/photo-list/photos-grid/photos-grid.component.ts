@@ -9,6 +9,7 @@ import { Photo } from '../../photo/photo';
 export class PhotosGridComponent implements OnInit {
 
   @Input() photos: Photo[] = [];
+  rows: any [] = [];
 
   constructor() { }
 

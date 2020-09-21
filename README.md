@@ -447,3 +447,23 @@ Vamos dizer que é um array do tipo Photo
 
 6- Em suma, retiramos a responsabilidade de apresentação do componente de photo-list para photos
 
+## Implementando a lógica do Grid
+
+1- Primeiramente precisamos entender que o nosso teamplate photos-grid.compoment.html, não pode se basenar nas fotos que vem do backend e sim precisa se basear em um array em branco ao qual iremos criar.
+
+2- Em photos-grid.component.ts vamos criar um array com o nome de rows:
+
+    rows = [];
+
+Sabemos também que se não tiparmos este array ele será do tipo any.
+
+3- Precisamos entender que nosso array vai receber outro array (que será nossas linhas), e dentro deste arrays podera ter no máximo 3 itens:
+
+    [
+        [1,2,3],
+        [1,2,3],
+        [1,2,3],
+        [1,2],
+    ]
+
+Podendo também ter dois ou mesmo 1 elemento deste array, sem problema algum.
