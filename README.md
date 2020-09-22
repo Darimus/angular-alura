@@ -492,3 +492,27 @@ Faremos uma iteração de 3 em 3, então utilizaremos um for:
 O slice() sempre recebe a posição inicial que queremos considerar, e a final não inclusiva, "fatiando" o array. Ou seja, quando o primeiro index é 0, o outro vale 3, e o slice() pegará a fatia de 0 a 2. Esta segunda posição não é inclusiva, e se tivéssemos colocado a posição final como 2, seriam pegos 0 e 1, por isto utilizamos index + 3. Na passada seguinte, o primeiro index será 3, e o final, 6, sendo pegos 3, 4 e 5.
 
 Não há problema se no final sobrarem dois ou apenas um elemento, pois o slice() só trará a quantidade existente. Vamos testar? No navegador, nada é exibido, e no console não há nenhuma mensagem de erro. Ao começarem a criar componentes no Angular, muitas pessoas passam por esta dificuldade, e trataremos dela a seguir.
+
+## Change Detection
+
+1- Temos um problema no photo-list.component.ts o array de photos é iniciado como um array vazio. Porém, a busca de dados é uma operação assíncrona, e demora milésimos de segundo até ser executada e lançar um novo valor.
+E o NgOnInit é passado somente no começo, então ele carrega como um array vazio também. O que precisamos é que ele mude sempre que o array mudar ou seja, que ele detecte as mudanças.
+
+2- Significa que photos está vazio e, na inicialização do componente, feita uma única vez, ele tentará acionar o groupColumns(). Será lançado um novo valor para o array em photo-list.component.ts, o qual automaticamente irá para photo-list.component.html, por conta do Data binding.
+
+3- Ou seja, nosso array de @Input() photos: Photo[] = [] em photo-list.component.ts está sendo atualizado com novos valores e nem um momento mais estamos chamando o groupColumns, ele está sendo chamado somente na criação do componente e depois nunca mais. Precisamos que ele atualize toda vez que o inbound property mudar, lá no arquivo photo-list.component.hmtl
+
+4- E nosso ngOnInit não ajudara nisso, temos que muda-lo para OnChanges (NO PLURAL), vamos atualizar o arquivo photos-grid.component.ts:
+
+    ngOnChanges(changes: SimpleChanges) {
+        if(changes.photos)
+            this.rows = this.groupColumns(this.photos);
+    }
+
+Não esquecendo de deletar o ngOnInit e tirar dos import também.
+
+Usando a interface OnChanges, quando clicamos em PhotosComponent, o Visual Studio não nos permite implementar o método, mas se logo abaixo de constructor digitarmos ngOnChanges(), ele nos dará a opção de adicionarmos um método com este nome.
+
+Este método recebe como parâmetro todas as possíveis mudanças das inbound properties do nosso componente. Tais mudanças são do tipo SimpleChanges, que importaremos de angular/core. Caso haja alguma mudança, uma propriedade com mesmo nome da inbound property que sofreu a mudança será adicionada dinamicamente. Se não houver mudança, tampouco haverá propriedade.
+
+Vamos testar isso implementando if para o caso de haver mudanças especificamente na inbound property photos e, caso positivo, executaremos this.groupColumns() passando os novos dados das imagens. Testamos com photos pois poderemos ter várias propriedades, porém apenas uma delas sofrer alteração. É necessário testar cada propriedade da inbound property.
