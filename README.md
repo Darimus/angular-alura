@@ -516,3 +516,27 @@ Usando a interface OnChanges, quando clicamos em PhotosComponent, o Visual Studi
 Este método recebe como parâmetro todas as possíveis mudanças das inbound properties do nosso componente. Tais mudanças são do tipo SimpleChanges, que importaremos de angular/core. Caso haja alguma mudança, uma propriedade com mesmo nome da inbound property que sofreu a mudança será adicionada dinamicamente. Se não houver mudança, tampouco haverá propriedade.
 
 Vamos testar isso implementando if para o caso de haver mudanças especificamente na inbound property photos e, caso positivo, executaremos this.groupColumns() passando os novos dados das imagens. Testamos com photos pois poderemos ter várias propriedades, porém apenas uma delas sofrer alteração. É necessário testar cada propriedade da inbound property.
+
+## Binding de eventos
+
+1- Vamos melhorar a experiencia do úsuario, atualmente temos 12 fotos, porém se uma tivermos 100, 200 ou mais fotos, o usuario deve ter alguma forma de filtrar e é isto que iremos implementar.
+
+2- Vamos começar adicionando alguns components prontos do bootstrap no arquivo photo-list.component.html.
+
+Em photo-list.component.html, que envolve o componente que traz os dados e os disponibiliza para photos.component.html, componente que os renderiza usando o grid do Bootstrap, acrescentaremos o seguinte trecho:
+    <div class="text-center mt-3 mb-3">
+        <form>
+            <input
+                class="rounded"
+                type="search"
+                placeholder="search..."
+                autofocus>
+        </form>
+    </div>
+
+Pelo que entendi, ele ira renderizar o campo de busca e depois continuara a renderizar as fotos até acabar, por isso colocamos este trecho de código aqui e não em outro local.
+Atualmente este campo ainda não funciona, pois não capturamos o que foi digitado nele.
+
+3- De que maneira capturaremos o dado digitado neste campo de busca? E depois, como será realizada a filtragem deste valor? Em algum momento sabemos que este valor deverá cair em uma propriedade de PhotoListComponent, portanto criaremos em photo-list.component.ts a propriedade filter, do tipo string, que começa inicializada com uma string em branco. À medida em que formos digitando no input do navegador, o valor será atribuído a esta propriedade.
+
+Primeiramente devemos nos preocupar com a captura do dado digitado no campo e só depois em filtrar ele.
