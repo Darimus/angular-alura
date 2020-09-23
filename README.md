@@ -540,3 +540,27 @@ Atualmente este campo ainda não funciona, pois não capturamos o que foi digita
 3- De que maneira capturaremos o dado digitado neste campo de busca? E depois, como será realizada a filtragem deste valor? Em algum momento sabemos que este valor deverá cair em uma propriedade de PhotoListComponent, portanto criaremos em photo-list.component.ts a propriedade filter, do tipo string, que começa inicializada com uma string em branco. À medida em que formos digitando no input do navegador, o valor será atribuído a esta propriedade.
 
 Primeiramente devemos nos preocupar com a captura do dado digitado no campo e só depois em filtrar ele.
+Uma hora o dado digitado no filtro vai ter que cair um propriedade do PhotoListComponent, então já vamos criar no arquivo photo-list.component.ts:
+
+      filter: string = '';
+
+Vai ter o nome de filter e ser do tipo string, que começara recebendo uma string em branco.
+
+4- Agora como faremos para ao começar a ser digitado no campo de busca o dado caia dentro da nossa propriedade filter lá no photo-list?
+Primeiramente devemos pensar o seguinte, qual o evento do JS devemos usar para fazermos isso?
+
+5- Usaremos o evento keyup, que nos permite mudar o valor de filter ao ser digitado e assim saindo do view para o componente, adicionaremos este evento no photo-list.component.hmtl: 
+
+     keyup = "filter = $event.target.value"
+
+Se deixarmos assim, nada acontecera, podemos usar o data binding? Não pois nele o caminho sera o seguinte, saira do componente e ira para view, ele ira procurar a expressao no componente, ou seja não existe a expressao filter = $event.target.value, temos que usar o event binding, que faz o caminho contrario, sai da view para o componente, assim ele avalia a para o evento keyup a expressao.
+
+Então, a cada valor que for digitado no campo de busca, o valor do input será acessado usando-se a propriedade filter. No entanto, nada acontecerá, pois se mantermos o código assim, o Angular entenderá que estamos usando a string filter = $event.target.value dentro do evento keyup.
+
+Já aprendemos que existe um tal de Data binding, então podemos supor que usar [keyup]="filter = $event.target.value" resolverá nosso problema, o que também não é o caso, já que este Data binding buscará a expressão entre aspas no componente, e este atributo não existe.
+
+Para resolvermos isso, precisaremos realizar um Data binding que é um Event binding. Isto, no Angular, é feito colocando-se o nome do evento entre parênteses — (keyup)="filter = $event.target.value". Ou seja, para o evento keyup, a expressão "filter = $event.target.value" será avaliada.
+
+Porém, esta associação de eventos se difere ao uso de colchetes, como em um Data binding regular, cujo dado vem da fonte de dados (componente) para o template, nunca o caminho inverso. Já quando utilizamos os parênteses, fazemos exatamente o oposto, isto é, o evento é disparado, indo da view do template para o componente.
+
+É importante entendermos que estes bindings são unidirecionais, cada qual percorrendo um caminho diferente. Vamos salvar o projeto, abrir a página no navegador, consultar o console, em que não teremos nenhum erro. E para nos assegurarmos de que o campo de busca captura o termo digitado, incluiremos uma Expression language para a propriedade filter.

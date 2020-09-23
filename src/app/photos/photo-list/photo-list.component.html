@@ -4,7 +4,9 @@
             class="rounded"
             type="search"
             placeholder="search..."
-            autofocus>
+            autofocus
+            (keyup) = "filter = $event.target.value"
+            >
     </form>
 </div>
 
