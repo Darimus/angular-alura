@@ -6,13 +6,15 @@ import { PhotoComponent } from './photo/photo.component';
 import { PhotoListComponent } from './photo-list/photo-list.component';
 import { PhotoFormComponent } from './photo-form/photo-form.component';
 import { PhotosGridComponent } from './photo-list/photos-grid/photos-grid.component';
+import { filterByDescription } from "./photo-list/filter-by-description.pipe";
 
 @NgModule({
     declarations: [ 
         PhotoComponent, 
         PhotoListComponent, 
         PhotoFormComponent,
-        PhotosGridComponent 
+        PhotosGridComponent,
+        filterByDescription 
     ],
 
     imports: [ 

@@ -564,3 +564,5 @@ Para resolvermos isso, precisaremos realizar um Data binding que é um Event bin
 Porém, esta associação de eventos se difere ao uso de colchetes, como em um Data binding regular, cujo dado vem da fonte de dados (componente) para o template, nunca o caminho inverso. Já quando utilizamos os parênteses, fazemos exatamente o oposto, isto é, o evento é disparado, indo da view do template para o componente.
 
 É importante entendermos que estes bindings são unidirecionais, cada qual percorrendo um caminho diferente. Vamos salvar o projeto, abrir a página no navegador, consultar o console, em que não teremos nenhum erro. E para nos assegurarmos de que o campo de busca captura o termo digitado, incluiremos uma Expression language para a propriedade filter.
+
+

@@ -10,6 +10,4 @@
     </form>
 </div>
 
-<ap-photos-grid [photos] = 'photos'></ap-photos-grid>
-
-<!-- Este 'photo' é o array do arquivo photo-list.component.ts -->
+<ap-photos-grid [photos]="photos | filterByDescription: filter"></ap-photos-grid>
