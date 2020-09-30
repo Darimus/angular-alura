@@ -565,4 +565,14 @@ Porém, esta associação de eventos se difere ao uso de colchetes, como em um D
 
 É importante entendermos que estes bindings são unidirecionais, cada qual percorrendo um caminho diferente. Vamos salvar o projeto, abrir a página no navegador, consultar o console, em que não teremos nenhum erro. E para nos assegurarmos de que o campo de busca captura o termo digitado, incluiremos uma Expression language para a propriedade filter.
 
+## Pipe e implementação
 
+1- Primeiramente vamos entender o que é um Pipe no Angular, quando queremos aplicar alguma transformação no dado, no nosso caso o que foi digitado pelo usuario.
+Existem diversos tipos de pipes prontos no proprio Angular, uma dele é o uppercase (que deixa tudo em caixa alta).
+Podemos aplicar Pipes em expressões, e existem vários feitos para Angular. No entanto criaremos o nosso, pois queremos aplicar um Pipe denominado filterByDescription em photos, o qual precisará levar o filter em consideração, e por isto o incluiremos após o Pipe. Em photo-list.component.html:
+
+<ap-photos [photos]="photos | filterByDescription: filter"></ap-photos>
+
+Ao se pensar no trecho acima, o pipe recebe dois parametros, a lista de imagens (photos) e o criterio filter.
+
+2- Como o pipe está muito ligado ao photo-list, vamos criar um arquivo como o nome filter-by-description.pipe.ts na pasta do photo-list.
