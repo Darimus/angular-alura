@@ -576,3 +576,18 @@ Podemos aplicar Pipes em expressões, e existem vários feitos para Angular. No 
 Ao se pensar no trecho acima, o pipe recebe dois parametros, a lista de imagens (photos) e o criterio filter.
 
 2- Como o pipe está muito ligado ao photo-list, vamos criar um arquivo como o nome filter-by-description.pipe.ts na pasta do photo-list.
+
+3- Ao criar o arquivo devemos exportar a class filterByDescription, sem muita novidade.
+
+    import { Pipe, PipeTransform } from '@angular/core';
+
+    @Pipe({ name: 'filterByDescription'})
+    export class FilterByDescription implements PipeTransform {
+        transform(value: any, ...args: any[]) {
+            throw new Error('Method not implemented.');
+        }
+    }
+
+O proprio VsCode faz o autocomplete para nós, gerando praticamente todas as linhas.
+
+4- O primeiro parâmetro do método transform() é sempre aquilo em que queremos aplicar a transformação. No caso, value será a lista de imagens, portanto será substituído por photos, e aproveitaremos para trocar o tipo any para Photo[], o qual importaremos. ...args: any[] é um array com todos os parâmetros que forem passados. E já que temos apenas um parâmetro, não o colocaremos como sendo um array, e o chamaremos de descriptionQuery, que será do tipo string.
