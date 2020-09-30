@@ -591,3 +591,30 @@ Ao se pensar no trecho acima, o pipe recebe dois parametros, a lista de imagens 
 O proprio VsCode faz o autocomplete para nós, gerando praticamente todas as linhas.
 
 4- O primeiro parâmetro do método transform() é sempre aquilo em que queremos aplicar a transformação. No caso, value será a lista de imagens, portanto será substituído por photos, e aproveitaremos para trocar o tipo any para Photo[], o qual importaremos. ...args: any[] é um array com todos os parâmetros que forem passados. E já que temos apenas um parâmetro, não o colocaremos como sendo um array, e o chamaremos de descriptionQuery, que será do tipo string.
+
+5- 
+
+import { Pipe, PipeTransform } from '@angular/core';
+import { Photo } from '../photo/photo';
+
+@Pipe({ name: 'filterByDescription'})
+export class FilterByDescription implements PipeTransform {
+
+    transform(photos: Photo[], descriptionQuery: string) {
+        descriptionQuery = descriptionQuery
+            .trim()
+            .toLowerCase();
+
+        if(descriptionQuery) {
+            return photos.filter(photo =>
+                photo.description.toLowerCase().includes(descriptionQuery)
+            );
+        } else {
+            return photos;
+        }
+    }
+}
+
+Precisaremos retornar o mesmo tipo de dado de photos: Photo[]. Indicaremos que descriptionQuery receberá o seu valor, o qual chama trim(), para a invalidação da digitação de espaços em branco, e o passaremos a toLowerCase(), para deixar em letras minúsculas e assim conseguirmos comparará-lo com a descrição, pois ambos estarão em caixa baixa.
+
+Então, testaremos se (if) há descriptionQuery, caso positivo, queremos a filtragem, se não, retornaremos o próprio array de photos. Usaremos filter(), do JavaScript para solicitar que, para cada imagem, tenhamos sua description. Deixaremos em minúsculo, e verificaremos se o que foi digitado faz parte desta string.
