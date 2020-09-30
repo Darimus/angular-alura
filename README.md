@@ -618,3 +618,18 @@ export class FilterByDescription implements PipeTransform {
 Precisaremos retornar o mesmo tipo de dado de photos: Photo[]. Indicaremos que descriptionQuery receberá o seu valor, o qual chama trim(), para a invalidação da digitação de espaços em branco, e o passaremos a toLowerCase(), para deixar em letras minúsculas e assim conseguirmos comparará-lo com a descrição, pois ambos estarão em caixa baixa.
 
 Então, testaremos se (if) há descriptionQuery, caso positivo, queremos a filtragem, se não, retornaremos o próprio array de photos. Usaremos filter(), do JavaScript para solicitar que, para cada imagem, tenhamos sua description. Deixaremos em minúsculo, e verificaremos se o que foi digitado faz parte desta string.
+
+6- Salvaremos, voltaremos ao navegador e encontramos o mesmo erro indicando que filterByDescription não pode ser encontrado. Um Pipe também precisa ser declarado, assim como componentes, portanto, em photos.module.ts, incluiremos FilterByDescription em declarations. Agora, sim, ao salvarmos, tudo estará funcionando bem no navegador, com as imagens sendo filtradas de acordo com o que for digitado no campo de busca.
+
+Agora, queremos exibir uma mensagem para quando o usuário digitar algum termo que não pode ser filtrado por não existir dentre as descrições. Atualmente isto faz com que a tela fique simplesmente em branco. Para exibirmos uma tela mais amigável, voltaremos ao template, photos.component.html, componente que faz a listagem, e colaremos o seguinte parágrafo no início do código:
+
+<p class="text-center text-muted">
+    Sorry, no photos
+</p>
+No Bootstrap, text-muted se refere à fonte de corpo um pouco menor, em tom acinzentado. Da maneira em que está, porém, a mensagem é fixa na página, sendo que ela deverá surgir apenas se não houver nenhuma imagem a ser mostrada. Usaremos a diretiva *ngIf, que espera avaliar uma expressão como verdadeira ou falsa. Já que em photos.component.ts há um Data binding para photos, indicaremos que se o comprimento (length) deste for 0, exibiremos a mensagem — sabemos que em JavaScript 0 é falso, enquanto qualquer outro número é considerado verdadeiro.
+
+Salvaremos a alteração abaixo e voltaremos ao navegador.
+
+<p class="text-center text-muted" *ngIf="!photos.length">
+    Sorry, no photos
+</p>
