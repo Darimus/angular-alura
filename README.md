@@ -663,4 +663,17 @@ export class PhotoListResolver {
     }
 }
 
-7- 
+7- Agora temos que implementar o resolver:
+
+export class PhotoListResolver implements Resolve<Observable<Photo[]>>
+
+O resolve implementado é generio e então qual é o tipo de dado que ele ira retornar no final? Vamos segurar ctrl e clicar em PhotoService, ele ira abrir automaticamente o arquivo, e então vamos ver qual é o tipo de dado para nos aplicarmos no nosso Resolve, temos que procurar qual o dado que o listFromUser retorna, que é um observable do tipo Photo, só deixar o mouse sobre o listFromUser para ver o tipo. Depois copia e cola no Revolve igual o código acima.
+
+8- Agora precisamos implementar o metodo resolve
+
+resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+        const userName = route.params.userName;
+        return this.service.listFromUser(userName);
+    }
+
+Vamos dizer que a route é do tipo ActivatedRouteSnapshot para saber o que está acontecendo na rota naquele momento
