@@ -677,3 +677,34 @@ resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     }
 
 Vamos dizer que a route é do tipo ActivatedRouteSnapshot para saber o que está acontecendo na rota naquele momento
+O state pelo que parece não é usado, pelo menos é o que diz o curso.
+
+9- Agora vamos no nosso arquivo de rota, app.routing.module.ts, como o resolver é acionado assim que a rota está sendo resolvida, é neste arquivo que fica a configuração:
+
+path: 'user/:userName',
+component: PhotoListComponent,
+resolve: {
+    photos: PhotoListResolver
+}
+
+Colocaremos este caminho no arquivo.
+
+10- Agora em photo-list.component, vamos excluir algumas linhas, pois não será mais necessario:
+
+const userName = this.activatedRoute
+    .snapshot
+    .params
+    .userName;
+
+this.photoService
+    .listFromUser(userName)
+    .subscribe(photos => this.photos = photos);
+
+Este trecho será deletado, por consequencia não precisaremos de private photoService: PhotoService em constructor(), e o seu respectivo importe.
+
+11- No constructor de photo-list iremos adicionar:
+
+this.activatedRoute.snapshot.data['photos']
+
+Agora não ira aparecer mais a mensagem 'Sorry, no photos', pois ele já renderizar com os dados resolvidos.
+
