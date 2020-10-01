@@ -633,3 +633,21 @@ Salvaremos a alteração abaixo e voltaremos ao navegador.
 <p class="text-center text-muted" *ngIf="!photos.length">
     Sorry, no photos
 </p>
+
+## Resolvers
+
+1- O Filtro está funcionando, porém ao carregar ou recarregar a página, por alguns segundos aparece nossa mensagem de 'Sorry, no photos', imagina se é um aplicação de demora para carregar, ficara um aviso de erro na tela.
+
+2- Vamos analisar o código, vamos abrir o photo-list.component.ts, nosso array photo começa vazio, ao carregar a página, ele vai considerar a lista de array vazia e sendo assim ira aparecer o 'Sorry, no photos'.
+
+3- Logo depois ele carrega os dados da API e assim, some o erro e carrega nossas fotos.
+
+4- Nosso problema é que o componente está responsavel por carregar as fotos, o ideal seria se ele já recebesse a lista pronta. Então ao acessar a rota e antes mesmo do componente ser renderizado na tela, queremos resolver os dados e assim já ter a lista pronta, antes de tudo.
+
+5- Como ele está atrelado a photo-list, vamos criar o resolver dentro da pasta photo-list mesmo:
+
+photo-list > photo-list.resolver.ts
+
+Criamos o arquivo resolver.
+
+6- 
