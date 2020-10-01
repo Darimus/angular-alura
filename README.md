@@ -650,4 +650,17 @@ photo-list > photo-list.resolver.ts
 
 Criamos o arquivo resolver.
 
-6- 
+6- Dentro do arquivo photo-list.resolver:
+
+
+import { PhotoService } from '../photo/photo.service'
+import { Injectable } from '@angular/core';
+
+@Injectable({ providedIn: 'root'})
+export class PhotoListResolver {
+
+    constructor(private service: PhotoService) {}
+    }
+}
+
+7- 
