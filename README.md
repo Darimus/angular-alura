@@ -709,3 +709,28 @@ this.activatedRoute.snapshot.data['photos']
 Agora não ira aparecer mais a mensagem 'Sorry, no photos', pois ele já renderizar com os dados resolvidos.
 
 Esta é a motivação por trás do Resolver — a resolução de dados assíncronos dos quais o componente depende antes de ser ativado, no momento em que ativamos a rota, antes mesmo dela avaliar tal componente.
+
+## RxJS e seu Subject
+
+1- Nosso filtro está funcionando, como ele está disparando o evento keyup, a cada letra digitada ele passa pelo filter e depois para o pipe. Então, a cada letra apertada ele faz a aplicação do filter e isso é ruim para nossa aplicação, imagina se isso fizesse uma requisição AJAX.
+Seria melhor, se ao parar de digitar e dar uma pequena pausa de 300 ms, ai sim disparasse a requisição e passasse pelo filter. Para isso utilizaremos um Pattern muito usado no JS, para que o filtro seja atualizado somente neste caso.
+Utilizaremos o RxJS.
+
+2- No arquivo photo-list.component.ts, criaremos inicialmente uma propriedade debounce na classe PhotoListComponent, de tipo Subject, por sua vez do tipo string, que por sua vez ira receber um novo Subject, que também irão precisar ser importados também.
+
+  debounce: Subject<string> = new Subject<string>();
+
+3- No arquivo photo-list.component.html, vamos mudar a linha do keyup:
+
+    (keyup) = "debounce.($event.target.value)"
+
+4- Voltando no photo-list.component.ts, vamos fazer o seguinte no ngOnInit:
+
+    this.debounce.subscribe(filter => this.filter = filter);
+
+Com isso, em vez de jogarmos o valor digitado diretamente em filter, emitiremos um valor de RxJS, a ser escutado pelo subscribe(), o qual atualizará o filtro. O subscribe() será chamado enquanto o valor estiver sendo emitido. Ele é um tanto diferente do HttpClient pois este emite um único valor, e o completa, algo que não ocorre com Subject, por termos criado-o.
+
+Tanto isto é verdade que, se voltarmos ao navegador e recarregarmos a página, o filtro funcionará bem, mesmo sem vantagens, já que estamos tendo mais trabalho, pois pegamos o valor digitado pelo usuário, passando-o para o debounce para que o Subject emita o valor por meio de next(). Tivemos que fazer o subscribe() para então levarmos o valor adiante.
+
+Assim, em photo-list.component.ts importaremos debounceTime de rxjs/operators, junto ao qual uma série de operadores poderá ser importada. A ideia é que, antes do subscribe(), pediremos para o debounce aplicar tal operação, com a estrutura pipe(), em que incluiremos debounceTime, a receber o período de tempo. E desta operação faremos o subscribe().
+
