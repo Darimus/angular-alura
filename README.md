@@ -724,6 +724,8 @@ Utilizaremos o RxJS.
 
     (keyup) = "debounce.($event.target.value)"
 
+E em photo-list.component.html, no lugar de colocarmos o valor digitado em filter, solicitaremos ao debounce para que seja feito o next(). A cada keyup será emitido um valor.
+
 4- Voltando no photo-list.component.ts, vamos fazer o seguinte no ngOnInit:
 
     this.debounce.subscribe(filter => this.filter = filter);
@@ -734,3 +736,26 @@ Tanto isto é verdade que, se voltarmos ao navegador e recarregarmos a página, 
 
 Assim, em photo-list.component.ts importaremos debounceTime de rxjs/operators, junto ao qual uma série de operadores poderá ser importada. A ideia é que, antes do subscribe(), pediremos para o debounce aplicar tal operação, com a estrutura pipe(), em que incluiremos debounceTime, a receber o período de tempo. E desta operação faremos o subscribe().
 
+5- Tudo funcionando, porém agora temos um pequeno problema. Como o subscribe nunca termina, ele fica sempre lá emitindo e ouvindo, podemos sofrer de memory leaking (vazamento de memória), pois ele ficara com aquela informação guardada na memoria, por isso precisamos criar um ciclo de destruição para ele.
+
+6- Toda vez que algo fica emitindo valores infinitos, é necessario implementar uma interface, OnDestroy, que será implementada no photo-list.component.ts.
+Ao fazermos isto, o método ngOnDestroy() é acrescentado. Ele faz parte do ciclo de vida de um componente do Angular, sendo chamado toda vez que um objeto é destruído.
+
+Significa que quando sairmos de PhotoListComponent, e ele for destruído, o método será chamado, e faremos o unsubscribe():
+
+export class PhotoListComponent implements OnInit, OnDestroy {
+
+    /* código omitido
+    */
+
+    ngOnInit(): void {
+        this.photos = this.activatedRoute.snapshot.data['photos'];
+        this.debounce
+        .pipe(debounceTime(300))
+        .subscribe(filter => this.filter = filter);
+    }
+
+    ngOnDestroy(): void {
+        this.debounce.unsubscribe();
+    }
+}
