@@ -765,4 +765,4 @@ export class PhotoListComponent implements OnInit, OnDestroy {
 1- Atualmente a integração que temos com o backend está nos retornando cerca de 15 imagens, porém se tivermos 1000 imagens, isso seria ruim para o backend, pois teria que fazer uma consulta e depois convertelos para JSON e envialos de volta. Isso também fica ruim para o front end, pois estamos lidando com uma quantidade enorme de dados na memoria, e nunca sabemos o ambiente que está rodando a aplicação ou site.
 Uma maneira de resolver este problema é a páginação, primeiramente carregaremos as 12 primeiras imagens e colocaremos um botão ou link para carregar as outras 12 e assim por diante.
 
-2- 
+2- No arquivo photo.service.ts, onde temos o listFromUser(), criaremos um metodo listFromUserPaginated(), com o primeiro parametro sendo o userName do tipo string, o segundo, page, do tipo number. Quando acessarmos 'localhost:3000/user/flavio/photos' e depois 'localhost:3000/user/flavio/photos?page=2', desta forma a API estara preparada para trazer somente as fotos da segunda página, algo definido pelo backend.
