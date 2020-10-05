@@ -759,3 +759,10 @@ export class PhotoListComponent implements OnInit, OnDestroy {
         this.debounce.unsubscribe();
     }
 }
+
+## Páginação de dados
+
+1- Atualmente a integração que temos com o backend está nos retornando cerca de 15 imagens, porém se tivermos 1000 imagens, isso seria ruim para o backend, pois teria que fazer uma consulta e depois convertelos para JSON e envialos de volta. Isso também fica ruim para o front end, pois estamos lidando com uma quantidade enorme de dados na memoria, e nunca sabemos o ambiente que está rodando a aplicação ou site.
+Uma maneira de resolver este problema é a páginação, primeiramente carregaremos as 12 primeiras imagens e colocaremos um botão ou link para carregar as outras 12 e assim por diante.
+
+2- 
