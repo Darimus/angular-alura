@@ -772,6 +772,19 @@ Uma maneira de resolver este problema é a páginação, primeiramente carregare
         .get<Photo[]>(API + '/' + userName + '/photos');
 }
 
-3- Ainda no photo.service.ts, vamos adicionar uma const de params recebendo um HttpParams e fazendo um append de page com o valor de page (page é string) e como o appen esta esperando receber uma string, vamos dar um toString: 
+3- Ainda no photo.service.ts, vamos adicionar uma const de params recebendo um HttpParams (Já vem do modulo httpClient) e fazendo um append de page com o valor de page (page é string) e como o appen esta esperando receber uma string, vamos dar um toString: 
 
 const params = new HttpParams().append('page', page.toString());
+
+Agora nosso get esta precisando receber um novo paramentro que é um objeto JS:
+
+ return this.http
+        .get<Photo[]>(API + '/' + userName + '/photos', 
+            { params: params });
+    }
+
+4- Agora no photo-list.resolver.ts, vamos atualizar:
+
+        return this.service.listFromUserPaginated(userName, 1);
+
+Ele vai pegar agora do paginated e vai carregar já a página 1.
