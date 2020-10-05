@@ -766,3 +766,12 @@ export class PhotoListComponent implements OnInit, OnDestroy {
 Uma maneira de resolver este problema é a páginação, primeiramente carregaremos as 12 primeiras imagens e colocaremos um botão ou link para carregar as outras 12 e assim por diante.
 
 2- No arquivo photo.service.ts, onde temos o listFromUser(), criaremos um metodo listFromUserPaginated(), com o primeiro parametro sendo o userName do tipo string, o segundo, page, do tipo number. Quando acessarmos 'localhost:3000/user/flavio/photos' e depois 'localhost:3000/user/flavio/photos?page=2', desta forma a API estara preparada para trazer somente as fotos da segunda página, algo definido pelo backend.
+
+    listFromUserPaginated(userName: string, page: number) {
+    return this.http
+        .get<Photo[]>(API + '/' + userName + '/photos');
+}
+
+3- Ainda no photo.service.ts, vamos adicionar uma const de params recebendo um HttpParams e fazendo um append de page com o valor de page (page é string) e como o appen esta esperando receber uma string, vamos dar um toString: 
+
+const params = new HttpParams().append('page', page.toString());
