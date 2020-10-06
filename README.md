@@ -468,7 +468,7 @@ Exemplo da explicação
 
 Podendo também ter dois ou mesmo 1 elemento deste array, sem problema algum.
 
-4- Agora em photos-grid.component.html vamos mudar algumas coisas, a primeira é tirar o row da <ol> e colocar na <li>, tirando assim o col-4 da li.
+4- Agora em photos-grid.component.html vamos mudar algumas coisas, a primeira é tirar o row da "<ol>" e colocar na "<li>", tirando assim o col-4 da li.
 
 5- Falta implementarmos a lógica para a construção da lista rows de photos-grid.component.ts. Em ngOnInit() indicaremos que this.rows receberá o resultado de this.groupColumns(), um método a ser criado e que recebe a lista de photos. Criaremos um array chamado newRows que começa vazio, e sabemos que teremos que retorná-lo em algum momento.
 
@@ -817,3 +817,6 @@ Com isso, teremos uma <div> centralizada, que exibirá nosso botão, e usamos a 
 
 <ap-load-button></ap-load-button>
 
+6- Agora temos que lidar com uma situação, se existem ainda dados para serem carregados, o botão load more deve aparecer, caso contrario a mensagem de 'no more data to load'.
+
+7-
