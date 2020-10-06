@@ -16,6 +16,7 @@ export class PhotoListComponent implements OnInit, OnDestroy {
   photos: Photo[] = [];
   filter: string = '';
   debounce: Subject<string> = new Subject<string>();
+  hasMore: boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute){ }
   

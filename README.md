@@ -818,5 +818,25 @@ Com isso, teremos uma <div> centralizada, que exibirá nosso botão, e usamos a 
 <ap-load-button></ap-load-button>
 
 6- Agora temos que lidar com uma situação, se existem ainda dados para serem carregados, o botão load more deve aparecer, caso contrario a mensagem de 'no more data to load'.
+Queremos fazer um tipo de if else para resolver isso e o Angular permite fazer isso no teamplate, então vamos tentar resolver pelo proprio teamplate:
 
-7-
+<div class="text-center" *ngIf='hasMore; else messageTeamplate'>
+  <button class="btn btn-primary">Load more</button>
+</div>
+
+<ng-template #messageTeamplate>
+  <p class="text-center text-muted">No more data to load</p>
+</ng-template>
+
+Então colocamos o *ngIf='hasMore' e colocamos ng-template, pois é necessario colocarmos dentro dela pois assim nos permite criar uma variavel de template.
+Logo depois do hasMore, colocamos um else e o nome da variavel de teamplate, podemos colocar qualquer nome nela, desde que tenha um # no inicio.
+
+7- Vamos no arquivo photo-list.component.ts e passaremos o hasMore lá:
+
+  hasMore: boolean = false;
+
+8- No arquivo photo-list.component.html, vamos passar um databind para o ap-load-button, de hasMore com a expressão hasMore:
+
+<ap-load-button [hasMore]='hasMore'></ap-load-button>
+
+9- 
