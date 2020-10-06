@@ -788,3 +788,32 @@ Agora nosso get esta precisando receber um novo paramentro que é um objeto JS:
         return this.service.listFromUserPaginated(userName, 1);
 
 Ele vai pegar agora do paginated e vai carregar já a página 1.
+
+## LoadButton
+
+1- Agora iremos criar o botão para carregar as outras fotos (Load More ou qualquer outro nome), primeiramente iremos criar o load dentro de photo-list, para isso iremos usar o Angular CLI e o comando de gerar automaticamente:
+
+ng g c photos/photo-list/load-button
+
+2- Dentro de load-button.component.ts, iremos criar um hasMore do tipo boolean que começara recebendo false. Isso ira nos ajudar a saber se existem mais dados a serem exibidos, no nosso caso fotos.
+
+  hasMore: boolean = false;
+
+3- No arquivo load-button.component.html, iremos remover todo o conteudo e iremos adicionar as seguintes linhas:
+
+<div class="text-center">
+    <button class="btn btn-primary">Load more</button>
+</div>
+
+<p class="text-center text-muted">No more data to load</p>
+
+Com isso, teremos uma <div> centralizada, que exibirá nosso botão, e usamos a classe btn do Bootstrap, bem como btn-primary, para que ele tenha destaque, e os textos "Load more" e "No more data to load". Quem for utilizar o componente em load-button.component.ts receberá o hasMore, um booleano. Em selector, não podemos esquecer de remover um "p" de app-load-button, mantendo simplesmente ap-load-button.
+
+4- No arquivo load-more.component.ts, o hasMore vai receber de fora e quem vai receber e passar o booleano para ele, e se queremos passar de forma declarativa precisamos usar o decorator @Input():
+
+  @Input() hasMore: boolean = false;
+
+5- Em photo-list.component.html, vamos colocar no final o botao e vermos na tela ele.
+
+<ap-load-button></ap-load-button>
+
