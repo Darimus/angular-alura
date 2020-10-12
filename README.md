@@ -882,3 +882,10 @@ Vamos dar um subscribe e receberemos as nossas photos, agora que temos a lista d
 
 Vamos trocar o hasMore para true, pois no if, se não veio dado nem um quer dizer que o hasMore é false.
 E vamos começar o botão aparecendo para ai sim fazer este if e verificar se foi recebido dados.
+
+11- Agora no photo-list.component.html, vamos ter que chamar o metodo load, vamos fazer um bind e vamos chamar o metodo load:
+
+<ap-load-button (click) = 'load()' [hasMore]='hasMore'></ap-load-button>
+
+Então clickei no botão e ele pode ou não mudar o estado do hasMore, a ideia é esta.
+
