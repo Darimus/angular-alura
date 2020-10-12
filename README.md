@@ -897,4 +897,4 @@ this.photos = this.photos.concat(photos)
 Mudamos a linha que era a seguinte: 
     this.photos.push(...photos); (MUDADA)
 
-Com o concat, vamos pegar o this.photos e concatenar com a lista de photos e assim gerar uma nova lista.
+Com o concat, vamos pegar o this.photos e concatenar com a lista de photos e assim gerar uma nova lista. Como é uma nova lista e assim uma nova referencia, ele vai atualizar.
