@@ -876,3 +876,5 @@ load() {
             if(!photos.length) this.hasMore = false;
         });
 }
+
+No metodo load, vamos pegar a listFromUserPaginated e pegar os dados de userName e atualizar o currentPage (que é um number!)
