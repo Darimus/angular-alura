@@ -887,5 +887,14 @@ E vamos começar o botão aparecendo para ai sim fazer este if e verificar se fo
 
 <ap-load-button (click) = 'load()' [hasMore]='hasMore'></ap-load-button>
 
-Então clickei no botão e ele pode ou não mudar o estado do hasMore, a ideia é esta.
+Então ao clicar no botão ele pode ou não mudar o estado do hasMore, a ideia é esta.
 
+12- Se deixarmos assim ao clicar no botão duas vezes ele vai retornar vazio e não ira adicionar as fotos, pois nosso photos de photos.component.ts não sabe que a lista mudou, ele só ira atualizar ao ser atribuido um novo valor, então temos um problema de atribuição.
+Vamos resolver da seguinte forma: 
+
+this.photos = this.photos.concat(photos)
+
+Mudamos a linha que era a seguinte: 
+    this.photos.push(...photos); (MUDADA)
+
+Com o concat, vamos pegar o this.photos e concatenar com a lista de photos e assim gerar uma nova lista.
