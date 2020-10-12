@@ -878,3 +878,4 @@ load() {
 }
 
 No metodo load, vamos pegar a listFromUserPaginated e pegar os dados de userName e atualizar o currentPage (que é um number!)
+Vamos dar um subscribe e receberemos as nossas photos, agora que temos a lista de photos, vamos dizer que a lista atual faz um push de cada foto retornado do backend (...photos).
