@@ -18,6 +18,8 @@ export class PhotoListComponent implements OnInit, OnDestroy {
   filter: string = '';
   debounce: Subject<string> = new Subject<string>();
   hasMore: boolean = false;
+  currentPage: number = 1;
+  userName: string = '';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -25,6 +27,8 @@ export class PhotoListComponent implements OnInit, OnDestroy {
     ){ }
   
   ngOnInit(): void {
+    this.userName = this.activatedRoute.snapshot.params.userName;
+
     this.photos = this.activatedRoute.snapshot.data['photos'];
 
     this.debounce
@@ -34,5 +38,13 @@ export class PhotoListComponent implements OnInit, OnDestroy {
   
   ngOnDestroy(): void {
     this.debounce.unsubscribe();
+  }
+
+  load () {
+    this.photoService.listFromUserPaginated(this.userName, ++this.currentPage)
+      .subscribe(photos => {
+        this.photos.push(...photos);
+        if(!photos.length) this.hasMore = false;
+      })
   }
 }

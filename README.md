@@ -854,4 +854,25 @@ constructor(
 
 Essas linhas são adicionadas no arquivo photo-list.component.ts
 
-10- 
+10- No mesmo arquivo, também iremos adicionar o seguinte:
+
+ngOnInit(): void {
+    this.userName = this.activatedRoute.snapshot.params.userName;
+    this.photos = this.activatedRoute.snapshot.data['photos'];
+    this.debounce
+        .pipe(debounceTime(300))
+        .subscribe(filter => this.filter = filter);
+}
+
+ngOnDestroy(): void {
+    this.debounce.unsubscribe();
+}
+
+load() {
+    this.photoService
+        .listFromUserPaginated(this.userName, ++this.currentPage)
+        .subscribe(photos => {
+            this.photos.push(...photos);
+            if(!photos.length) this.hasMore = false;
+        });
+}
