@@ -839,4 +839,6 @@ Logo depois do hasMore, colocamos um else e o nome da variavel de teamplate, pod
 
 <ap-load-button [hasMore]='hasMore'></ap-load-button>
 
+Ou seja, a inbound property do botão fará um data binding com o hasmore de photo-list.component.ts. Ou seja, ao clicar no botão vamos verificar se os dados chegaram e sendo assim continua true o hasmore, caso contrario, o hasmore se torna false e isso quer dizer que não tem mais dados a serem consumidos.
+
 9- 
