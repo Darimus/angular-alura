@@ -841,4 +841,17 @@ Logo depois do hasMore, colocamos um else e o nome da variavel de teamplate, pod
 
 Ou seja, a inbound property do botão fará um data binding com o hasmore de photo-list.component.ts. Ou seja, ao clicar no botão vamos verificar se os dados chegaram e sendo assim continua true o hasmore, caso contrario, o hasmore se torna false e isso quer dizer que não tem mais dados a serem consumidos.
 
-9- 
+9- Agora precisaremos de photoService novamente, para que seja acessado a cada click do botão de load. Também iremos criar a propriedade currentPage do tipo number, que começara em 1, e userName do tipo string, pois precisaremos deles a cada vez que os dados forem lidos.
+
+hasMore: boolean = false;
+currentPage: number = 1;
+userName: string = '';
+
+constructor(
+    private activatedRoute: ActivatedRoute,
+    private photoService: PhotoService
+) { }
+
+Essas linhas são adicionadas no arquivo photo-list.component.ts
+
+10- 
