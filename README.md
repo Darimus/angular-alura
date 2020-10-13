@@ -924,4 +924,17 @@ export class PhotoListModule {
 
 }
 
-3- 
+3- Agora dentro da pasta photo-form, vamos fazer a mesma coisa, criar um arquivo chamado photo-form.module.ts:
+
+import { NgModule } from "@angular/core";
+import { PhotoFormComponent } from "./photo-form.component";
+
+@NgModule({
+    declarations: [PhotoFormComponent]
+})
+
+export class PhotoFormModule {
+
+}
+
+4- 
