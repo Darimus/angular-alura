@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { CardModule } from "src/app/shared/components/card/card.module";
 import { PhotoModule } from "../photo/photo.module";
 
 import { filterByDescription } from "./filter-by-description.pipe";
@@ -17,7 +18,8 @@ import { PhotosGridComponent } from "./photos-grid/photos-grid.component";
 
     imports: [ 
         CommonModule,
-        PhotoModule
+        PhotoModule,
+        CardModule
     ]
 })
 

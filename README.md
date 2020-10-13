@@ -1046,11 +1046,13 @@ import { CardComponent } from "./card.component";
 
 @NgModule ({
     declarations: [ CardComponent ],
-    exports: [ CardComponent ]
+    exports: [ CardComponent ],
+    imports: [ CommonModule ]
+
 })
 
 export class CardModule {
 
 }
 
-5-
+5- Como quem vai usar é o photo-list, iremos importar o modulo do card nele.
