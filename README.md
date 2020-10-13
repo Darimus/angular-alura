@@ -898,3 +898,30 @@ Mudamos a linha que era a seguinte:
     this.photos.push(...photos); (MUDADA)
 
 Com o concat, vamos pegar o this.photos e concatenar com a lista de photos e assim gerar uma nova lista. Como é uma nova lista e assim uma nova referencia, ele vai atualizar.
+
+## Submódulos
+
+1- Atualmente photos.module.ts contem todos os modulos de photo, seja photo-list, photo-form etc.
+Vamos acabar tendo um grande volume de declarações nele, porém alguns modulos só dizem respeito a outro modulo, ou seja, trabalha diretamente dentro dele, é como se tivesse tudo dentro de um grande pacote e todos tem uma GRANDE ligação entre eles.
+Sendo assim, vamos começar a criar submodulos.
+
+2- Dentro da pasta photo-list, vamos criar o photo-list.module.ts:
+
+import { NgModule } from "@angular/core";
+import { LoadButtonComponent } from "./load-button/load-button.component";
+import { PhotoListComponent } from "./photo-list.component";
+import { PhotosGridComponent } from "./photos-grid/photos-grid.component";
+
+@NgModule({
+    declarations: [
+        PhotoListComponent,
+        PhotosGridComponent,
+        LoadButtonComponent
+    ]  
+})
+
+export class PhotoListModule {
+
+}
+
+3- 
