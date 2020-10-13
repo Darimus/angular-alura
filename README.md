@@ -992,3 +992,11 @@ export class PhotoModule {
             ],
 
 Igual fizemos com o bootstrap, pois como é um css global ele precisa ser declarado no angular.json
+
+2- Vamos usar o font awesome agora, abriremos o arquivo photo-list.component.html e usaremos a tag i antes do input:
+
+        '<i class="fa fa-search mr-1"></i>'
+
+3- Vamos melhorar também os espaçamentos das fotos, arquivo photos-grid.component.html e vamos colocar a classe no-gutters na li.
+
+4- Também melhoraremos a parte de acessibilidade, programas de leitura devem ignorar a lupa, então vamos colocar o atributo aria-hidden='true' na tag i do arquivo photo-list.component.html.
