@@ -980,3 +980,15 @@ import { PhotoComponent } from "./photo.component";
 export class PhotoModule {
 
 }
+
+## Integração com Font Awesome
+
+1- Instalamos o font awesome via npm e adicionamos:
+
+ "styles": [
+              "src/styles.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/font-awesome/css/font-awesome.css"
+            ],
+
+Igual fizemos com o bootstrap, pois como é um css global ele precisa ser declarado no angular.json
