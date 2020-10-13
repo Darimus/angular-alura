@@ -1056,3 +1056,36 @@ export class CardModule {
 }
 
 5- Como quem vai usar é o photo-list, iremos importar o modulo do card nele.
+
+6- Dentro de photos-grid.component.html:
+
+<ol class='list-unstyled'>
+  <li *ngFor='let cols of rows' class='row no-gutters'>
+    <div *ngFor='let photo of cols' class='col-4'>
+      <ap-card>     
+        <ap-photo 
+            [url]='photo.url' 
+            [description]='photo.description'>
+        </ap-photo>
+  
+        <div class="text-center p-1">
+          <i aria-hidden="true" class="fa fa-heart-o fa-1x mr-2"></i>{{ photo.likes }}
+          <i aria-hidden="true" class="fa fa-comment-o fa-1x mr-2 ml-2"></i>{{ photo.comments }}
+        </div>
+      </ap-card>
+      </div>
+  </li>
+</ol>
+
+Porém nada é exibido, pois nunca falamos para o card onde o conteudo deve entrar.
+
+7- Dentro de card.component.html, vamos utilizar a diretiva ng-content:
+
+<div class="card border-light text-center">
+    <h4 class="card-header">{{ title }}</h4>
+    <div class="card-block text-justify">
+        <ng-content></ng-content>
+    </div>
+</div>
+
+Assim já resolvendo o problema de não aparecer o conteudo dentro do card.
