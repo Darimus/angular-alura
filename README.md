@@ -916,7 +916,8 @@ import { PhotosGridComponent } from "./photos-grid/photos-grid.component";
     declarations: [
         PhotoListComponent,
         PhotosGridComponent,
-        LoadButtonComponent
+        LoadButtonComponent,
+        filterByDescription
     ]  
 })
 
@@ -937,4 +938,24 @@ export class PhotoFormModule {
 
 }
 
-4- 
+4- Agora vamos arrumar os imports de photos.module.ts, vamos tirar todos os declarations dele: 
+
+import { HttpClientModule } from "@angular/common/http";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { PhotoFormModule } from "./photo-form/photo-form.module";
+import { PhotoListModule } from "./photo-list/photo-list.module";
+
+@NgModule({
+
+    imports: [ 
+        PhotosModule,
+        PhotoFormModule,
+        PhotoListModule,
+        HttpClientModule,
+        CommonModule
+    ]
+})
+
+export class PhotosModule {}

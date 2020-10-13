@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import { filterByDescription } from "./filter-by-description.pipe";
 import { LoadButtonComponent } from "./load-button/load-button.component";
 import { PhotoListComponent } from "./photo-list.component";
 import { PhotosGridComponent } from "./photos-grid/photos-grid.component";
@@ -7,7 +8,8 @@ import { PhotosGridComponent } from "./photos-grid/photos-grid.component";
     declarations: [
         PhotoListComponent,
         PhotosGridComponent,
-        LoadButtonComponent
+        LoadButtonComponent,
+        filterByDescription
     ]  
 })
 
