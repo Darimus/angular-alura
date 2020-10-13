@@ -1000,3 +1000,57 @@ Igual fizemos com o bootstrap, pois como é um css global ele precisa ser declar
 3- Vamos melhorar também os espaçamentos das fotos, arquivo photos-grid.component.html e vamos colocar a classe no-gutters na li.
 
 4- Também melhoraremos a parte de acessibilidade, programas de leitura devem ignorar a lupa, então vamos colocar o atributo aria-hidden='true' na tag i do arquivo photo-list.component.html.
+
+## Component container e ng-content
+
+1- Vamos adicionar o numero de likes e comments logo abaixo das fotos, abrimos o arquivos photos-grid.component.html que é responsavel pela renderização e adicionaremos as seguintes tags:
+
+<div class='text-center'>
+    <i aria-hidden="true" class="fa fa-heart-o fa-1x mr-2"></i>{{ photo.likes }}
+    <i aria-hidden="true" class="fa fa-comment-o fa-1x mr-2 ml-2"></i>{{ photo.comments }}
+</div>
+
+Logo abaixo do ap-photo.
+
+2- Vamos colocar tudo dentro de um card, para ficar mais bonito. Como o card é um componente altamente compartilhavel, podemos usar em varios locais da nossa aplicação, iremos criar uma pasta shared dentro de app.
+Então:
+
+app/shared/components/card
+
+3- Dentro da pasta card, vamos criar dois arquivos o html e ts, card.component.ts e card.componen.html.
+
+card.component.ts:
+
+import { Component, Input } from "@angular/core";
+
+@Component({
+    selector: 'ap-card',
+    templateUrl: './card.component.html'
+})
+
+export class CardComponent {
+    @Input() title: string = '';
+}
+
+card.component.html:
+
+<!-- <div class="card border-light text-center">
+    <h4 class="card-header">{{ title }}</h4>
+    <div class="card-block text-justify">
+    </div>
+</div> -->
+
+4- Vamos criar o card.module.ts também:
+
+import { CardComponent } from "./card.component";
+
+@NgModule ({
+    declarations: [ CardComponent ],
+    exports: [ CardComponent ]
+})
+
+export class CardModule {
+
+}
+
+5-
