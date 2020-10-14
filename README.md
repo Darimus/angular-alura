@@ -1111,4 +1111,42 @@ export class SearchComponent {
 
 4- Agora vamos voltar para o photo-list.component.html, vamos mover todo o bloco da primeira div para dentro do search html.
 
-5- 
+5- Agora vamos pegar o debounce do photo-list.component.ts e vamos mover para dentro do search.component.ts:
+
+import { Component } from "@angular/core";
+import { Subject } from "rxjs";
+
+@Component({
+    selector: 'ap-search',
+    templateUrl: './search.component.html'
+})
+
+export class SearchComponent {
+    debounce: Subject<string> = new Subject<string>();
+}
+
+6- Vamos tirar algumas linhas de debounce do photo-list.component.ts, são elas o NgDestroy e o this.debounce.
+
+7- E iremos atualizar o search.component.ts:
+
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+
+@Component({
+    selector: 'ap-search',
+    templateUrl: './search.component.html'
+})
+export class SearchComponent implements OnInit, OnDestroy {
+
+    debounce: Subject<string> = new Subject<string>();
+
+    ngOnInit(): void {
+        this.debounce
+        .pipe(debounceTime(300));
+    }
+    ngOnDestroy(): void {
+        this.debounce.unsubscribe();
+    }
+}
+
