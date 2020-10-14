@@ -1150,3 +1150,17 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
 }
 
+8- Agora em photo-list.component.html, vamos colocar a tag criada, ap-search:
+
+<ap-search></ap-search>
+
+<ap-photos-grid [photos]="photos | filterByDescription: filter"></ap-photos-grid>
+
+<ap-load-button 
+    (click) = 'load()' 
+    [hasMore]='hasMore'>
+</ap-load-button>
+
+9- Vamos declarar o SearchComponent no photo-list.module.ts
+
+10- Tudo funcionando legal e bonito, porém agora o nosso campo search não está funcionando, precisamos fazer um component filho se comunicar com um componente pai.
