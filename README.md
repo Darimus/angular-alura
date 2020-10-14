@@ -1094,6 +1094,18 @@ Assim já resolvendo o problema de não aparecer o conteudo dentro do card.
 
 1- No arquivo photo-list.component.html, temos muito HTML para trabalhar e no Angular queremos que isso seja minimo, então a primeira div do arquivo é um forte candidato para ser componentizado.
 
-2- Vamos criar uma nova pasta dentro de list com o nome de search e dentro de search o arquivo search.component.ts
+2- Vamos criar uma nova pasta dentro de list com o nome de search e dentro de search o arquivo search.component.ts e o teamplate search.component.hmtl
 
-3- 
+3- search.component.ts:
+
+import { Component } from "@angular/core";
+
+@Component({
+    
+})
+
+export class SearchComponent {
+
+}
+
+4- 
