@@ -1101,11 +1101,14 @@ Assim já resolvendo o problema de não aparecer o conteudo dentro do card.
 import { Component } from "@angular/core";
 
 @Component({
-    
+    selector: 'ap-search',
+    templateUrl: './search.component.html'
 })
 
 export class SearchComponent {
 
 }
 
-4- 
+4- Agora vamos voltar para o photo-list.component.html, vamos mover todo o bloco da primeira div para dentro do search html.
+
+5- 
