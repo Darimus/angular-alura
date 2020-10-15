@@ -1,6 +1,10 @@
-<ap-search (onTyping)></ap-search>
+<ap-search 
+    (onTyping)='filter = $event'>
+</ap-search>
 
-<ap-photos-grid [photos]="photos | filterByDescription: filter"></ap-photos-grid>
+<ap-photos-grid 
+    [photos]="photos | filterByDescription: filter">
+</ap-photos-grid>
 
 <ap-load-button 
     (click) = 'load()' 

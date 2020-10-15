@@ -1171,4 +1171,29 @@ export class SearchComponent implements OnInit, OnDestroy {
 
 2- Vamos criar um evento criado por nos mesmo dentro da tag ap-search no arquivo photo-list.component.html, vamos dar o nome deste evento de onTyping (poderia ser qualquer outro nome).
 
-3- 
+<ap-search 
+    (onTyping)='filter = $event'>
+</ap-search>
+
+Esse componente ao ser digitado vai disparar o evento onTyping e esse $event vai receber o valor digitado no input. O $event vai jogar o valor no filter de photo-list.component.
+
+3- Agora vamos criar o evento dentro do arquivo search.component.ts:
+
+    @Output() onTyping = new EventEmitter<string>;
+
+Tipamos o EventEmitter para o tipo string, ele vem como generico ou seja any.
+Cuidado com o import, ele tem que ser o Angular, pois existem outros imports para esse EventEmitter.
+
+4- Agora vamos dar um subscribe no ngOnInit do arquivo search.component.ts:
+
+ngOnInit(): void {
+        this.debounce
+        .pipe(debounceTime(300))
+        .subscribe(filter => this.onTyping.emit(filter));
+    }
+
+5- Filtro resolvido!
+
+6- Agora vamos convencionar, quando o usuario clicar no botão para carregar mais imagens automaticamente o filtro de search é limpo.
+
+7-
