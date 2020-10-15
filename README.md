@@ -1230,3 +1230,63 @@ Logo apos vamos abrir o arquivo photo-list.component.ts e vamos adicionar um eve
             >
 
 11- Filtro limpo e campo também limpo.
+
+## Criando a primeira diretiva
+
+1- Agora queremos que ao colocar o mouse sobre o card ele fica mais escuro e se destaque dos demais.
+
+2- Primeiramente vamos criar um new folder na pasta shared/directives
+
+3- shared/directives/darken-on-hover e dentro desta pasta o arquivo darken-on-hover.module.ts e darken-on-hover.directive.ts
+
+4- Dentro de darken directive.ts:
+
+import { Directive } from "@angular/core";
+
+@Directive({
+    selector:'[apDarkenOnHover]'
+})
+
+export class DarkenOnHoverDirective { }
+
+5- Dentro de darkenModule:
+
+
+import { DarkenOnHoverDirective } from "./darken-on-hover.directive";
+
+@NgModule({
+    declarations: [DarkenOnHoverDirective],
+    exports: [DarkenOnHoverDirective]    
+})
+
+export class DarkenOnHoverModule {
+
+}
+
+6- Dentro do arquivo photos-grid.component.html:
+
+<p class='text-center text-muted' *ngIf='!photos.length'>
+  Sorry, no photos
+</p>
+
+<ol class='list-unstyled'>
+  <li *ngFor='let cols of rows' class='row no-gutters'>
+    <div *ngFor='let photo of cols' class='col-4' apDarkenOnHover>
+      <ap-card [title]="photo.description">     
+        <ap-photo 
+            [url]='photo.url' 
+            [description]='photo.description'>
+        </ap-photo>
+  
+        <div class="text-center p-1">
+          <i aria-hidden="true" class="fa fa-heart-o fa-1x mr-2"></i>{{ photo.likes }}
+          <i aria-hidden="true" class="fa fa-comment-o fa-1x mr-2 ml-2"></i>{{ photo.comments }}
+        </div>
+      </ap-card>
+      </div>
+  </li>
+</ol>
+
+Adicionamos o apDarkenOnHover.
+
+7- 
