@@ -1196,4 +1196,37 @@ ngOnInit(): void {
 
 6- Agora vamos convencionar, quando o usuario clicar no botão para carregar mais imagens automaticamente o filtro de search é limpo.
 
-7-
+7- No arquivo photo-list.component.ts vamos adicionar um this.filter = '' no load:
+
+load () {
+    this.photoService.listFromUserPaginated(this.userName, ++this.currentPage)
+        .subscribe(photos => { 
+          this.filter = '';
+          this.photos = this.photos.concat(photos);
+          if(!photos.length) this.hasMore = false;
+      })
+
+8- Ele limpa o search, porém não limpa o campo.
+
+9- Arquivo search.component.ts vamos adicionar um @Input:
+
+    @Input() value: string = '';
+
+Logo apos vamos abrir o arquivo photo-list.component.ts e vamos adicionar um data binding.
+
+<ap-search 
+    (onTyping)='filter = $event' [value]='filter'>
+</ap-search>
+
+10- Search.component.html:
+
+<input
+            class="rounded"
+            type="search"
+            placeholder="search..."
+            autofocus
+            (keyup) = "debounce.next($event.target.value)"
+            [value]='value'
+            >
+
+11- Filtro limpo e campo também limpo.
