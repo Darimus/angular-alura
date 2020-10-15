@@ -1212,7 +1212,7 @@ load () {
 
     @Input() value: string = '';
 
-Logo apos vamos abrir o arquivo photo-list.component.ts e vamos adicionar um data binding.
+Logo apos vamos abrir o arquivo photo-list.component.ts e vamos adicionar um event binding.
 
 <ap-search 
     (onTyping)='filter = $event' [value]='filter'>
