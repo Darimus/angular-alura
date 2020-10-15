@@ -1164,3 +1164,11 @@ export class SearchComponent implements OnInit, OnDestroy {
 9- Vamos declarar o SearchComponent no photo-list.module.ts
 
 10- Tudo funcionando legal e bonito, porém agora o nosso campo search não está funcionando, precisamos fazer um component filho se comunicar com um componente pai.
+
+## Output property
+
+1- Vamos resolver o problema do search.
+
+2- Vamos criar um evento criado por nos mesmo dentro da tag ap-search no arquivo photo-list.component.html, vamos dar o nome deste evento de onTyping (poderia ser qualquer outro nome).
+
+3- 
