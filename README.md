@@ -1289,4 +1289,45 @@ export class DarkenOnHoverModule {
 
 Adicionamos o apDarkenOnHover.
 
-7- 
+## Terminando a implementação da diretiva
+
+1- Vamos começar com o constructor no arquivo darken-on-hover.directive.ts.
+
+Por utilizarmos a diretiva como sendo um atributo de um elemento desejado, precisaremos saber se, quando ela estiver "pendurada" em um elemento como a <div>, teremos acesso ao elemento do DOM no qual ela foi associada. Já entendemos o conceito de injeção de dependências, portanto em darken-on-hover.directive.ts incluiremos constructor(), cujo el se refere a element, de tipo ElementRef.
+
+2- Agora o nosso Angular vai saber que devera acessar o elemento do DOM ao qual a diretiva está pendurada e assim sera nos passado a referencia para manipularmos.
+
+3- no arquivo darken-on-hover:
+
+export class DarkenOnHoverDirective { 
+    constructor(private el: ElementRef){}
+
+    @HostListener('')
+
+    darkenOn(){
+        console.log('DarkenOn')
+    }
+
+    darkenOff(){
+        console.log('DarkenOff')
+    }
+ }
+
+ 4- Agora vamos usar o mouse over e o mouse leave para o JS saber os eventos que estão acontecendo:
+
+ export class DarkenOnHoverDirective { 
+    constructor(private el: ElementRef){}
+
+    @HostListener('mouseover')
+
+    darkenOn(){
+        console.log('DarkenOn')
+    }
+
+    @HostListener('mouseleave')
+    darkenOff(){
+        console.log('DarkenOff')
+    }
+ }
+
+ 
