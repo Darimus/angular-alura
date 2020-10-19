@@ -1330,4 +1330,33 @@ export class DarkenOnHoverDirective {
     }
  }
 
- 
+5- Agora precisamos que ao passar o mouse sobre o card, manipularemos o DOM.
+
+6- Daí, basta manipularmos o DOM como já sabemos, mas o mais importante é que não iremos fazê-lo diretamente, e sim por meio de uma ferramenta do Angular chamada Render, um módulo que nos permite manipular o DOM sem termos que digitar o que queremos fazer.
+
+Quando fazemos uma renderização do lado do servidor, não há DOM. Portanto, se formos utilizar o Render para manipulação do DOM, garantimos que o código não dará problemas durante a renderização de back end, e assim por diante.
+
+7- Agora vamos adicionar o Renderer2 para manipular o DOM:
+
+export class DarkenOnHoverDirective { 
+    constructor(
+        private el: ElementRef, 
+        private render: Renderer2
+        ){}
+
+    @HostListener('mouseover')
+
+    darkenOn(){
+        this.render.setStyle(this.el.nativeElement, 'filter', 'brightness(85%)');
+    }
+
+    @HostListener('mouseleave')
+    darkenOff(){
+        this.render.setStyle(this.el.nativeElement, 'filter', 'brightness(100%)');
+    }
+ }
+
+ O que estamos fazendo?
+ Estamos pegando o render e setando um estilo css para ele, que vai ser no elemento filter e ira pegar a propriedade brightness tanto com o mouseover quanto o mouselave.
+
+ 8- 
