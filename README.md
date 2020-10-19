@@ -1359,4 +1359,28 @@ export class DarkenOnHoverDirective {
  O que estamos fazendo?
  Estamos pegando o render e setando um estilo css para ele, que vai ser no elemento filter e ira pegar a propriedade brightness tanto com o mouseover quanto o mouselave.
 
- 8- 
+ 8- Assim já está funcionando, porem e se quisermos setar um valor diferente para brightness em outro elementos? Podemos usar a inbound property:
+
+ export class DarkenOnHoverDirective { 
+
+    @Input() brightness = '70%';
+
+    constructor(
+        private el: ElementRef, 
+        private render: Renderer2
+        ){}
+
+    @HostListener('mouseover')
+
+    darkenOn(){
+        this.render.setStyle(this.el.nativeElement, 'filter', `brightness(${this.brightness})`);
+    }
+
+    @HostListener('mouseleave')
+    darkenOff(){
+        this.render.setStyle(this.el.nativeElement, 'filter', 'brightness(100%)');
+    }
+ }
+
+ Adicionaria um Input de brightness e usaria um teamplate string para setar o valor.
+
